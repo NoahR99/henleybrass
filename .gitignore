@@ -17,3 +17,5 @@ desktop.ini
 # Node (if anything ever gets added)
 node_modules/
 *.log
+
+.vercel
