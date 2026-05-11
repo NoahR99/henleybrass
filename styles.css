@@ -553,6 +553,12 @@ img { max-width: 100%; height: auto; display: block; }
   }
 }
 
+/* When only one column of contact info, span full width with a sensible cap */
+.contact-split .contact-side:only-child {
+  grid-column: 1 / -1;
+  max-width: 720px;
+}
+
 .contact-side .side-label {
   font-family: var(--sans);
   font-size: 11px;
