@@ -66,7 +66,59 @@
       </ul>
     </div>
 
+    <div class="contact-side">
+      <!--
+        To make the form actually deliver messages, set the `action` attribute
+        to a form-handling endpoint and remove the inline submit handler below.
+        Common options (all free tiers available):
+          - Formspree:    action="https://formspree.io/f/YOUR_FORM_ID"
+          - Web3Forms:    action="https://api.web3forms.com/submit"
+                          (also add: <input type="hidden" name="access_key" value="YOUR_KEY">)
+          - Vercel:       create /api/contact.js as a serverless function and
+                          set action="/api/contact"
+      -->
+      <form class="contact-form" id="contact-form" action="#" method="POST" novalidate>
+        <div class="field">
+          <label for="cf-name">Name</label>
+          <input type="text" id="cf-name" name="name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="cf-email">Your email</label>
+          <input type="email" id="cf-email" name="email" required autocomplete="email">
+        </div>
+        <div class="field">
+          <label for="cf-occasion">Occasion <span class="optional">(optional)</span></label>
+          <input type="text" id="cf-occasion" name="occasion" autocomplete="off">
+        </div>
+        <div class="field">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit">Send message</button>
+        <p class="form-status" hidden role="status">
+          Thanks for reaching out &mdash; we&rsquo;ll be in touch shortly.
+        </p>
+      </form>
+    </div>
+
   </section>
+
+  <script>
+    (function () {
+      var form = document.getElementById('contact-form');
+      if (!form) return;
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        var status = form.querySelector('.form-status');
+        if (status) status.hidden = false;
+        form.reset();
+      });
+    })();
+  </script>
 
   <section class="closing">
     <p class="closing-line">Henley Brass &mdash; Music for every occasion</p>
